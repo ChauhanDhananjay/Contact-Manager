@@ -1,6 +1,8 @@
 package com.contact.Smart.Contact.Manager.Controller;
 
-import com.contact.Smart.Contact.Manager.Service.ImageService;
+import java.util.List;
+import java.util.UUID;
+
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -18,12 +20,10 @@ import com.contact.Smart.Contact.Manager.Helpers.Helper;
 import com.contact.Smart.Contact.Manager.Helpers.Message;
 import com.contact.Smart.Contact.Manager.Helpers.Messagetype;
 import com.contact.Smart.Contact.Manager.Service.ContactService;
+import com.contact.Smart.Contact.Manager.Service.ImageService;
 import com.contact.Smart.Contact.Manager.Service.UserService;
 
 import jakarta.servlet.http.HttpSession;
-
-import java.util.List;
-import java.util.UUID;
 
 
 @Controller
@@ -74,7 +74,7 @@ public class ContactController {
         contact.setWebsiteLink(contactForm.getWebsiteLink());
         contact.setPicture(fileUrl);
         contact.setCloudinaryImagePublicId(filename);
-        //contactService.save(contact);
+        contactService.save(contact);
 
         session.setAttribute("message",
                 Message.builder()
